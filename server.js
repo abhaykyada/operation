@@ -10,8 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 // Serve frontend files
-app.use(express.static(path.join(__dirname, "frontend")));
-
+app.use(express.static(__dirname));
 /*
   PostgreSQL connection
 
