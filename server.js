@@ -2,25 +2,38 @@ const express = require("express");
 const { Pool } = require("pg");
 const bcrypt = require("bcrypt");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
+// Serve frontend files
+app.use(express.static(path.join(__dirname, "frontend")));
+
 /*
   PostgreSQL connection
-  IMPORTANT:
-  Replace YOUR_POSTGRES_PASSWORD with the password you use
-  to connect to PostgreSQL/pgAdmin as the postgres user.
+
+  Render ma DATABASE_URL Environment Variable ma
+  Neon PostgreSQL connection string add karvani che.
 */
-const pool = new Pool({
-    user: "postgres",
-    host: "localhost",
-    database: "training_db",
-    password: "Abhay@7878",
-    port: 5432
-});
+const pool = new Pool(
+    process.env.DATABASE_URL
+        ? {
+              connectionString: process.env.DATABASE_URL,
+              ssl: {
+                  rejectUnauthorized: false
+              }
+          }
+        : {
+              user: "postgres",
+              host: "localhost",
+              database: "training_db",
+              password: "YOUR_POSTGRES_PASSWORD",
+              port: 5432
+          }
+);
 
 // Test database connection
 pool.query("SELECT NOW()", (error) => {
@@ -31,9 +44,9 @@ pool.query("SELECT NOW()", (error) => {
     }
 });
 
-// Home route
+// Home route → Login page
 app.get("/", (req, res) => {
-    res.send("Server is working!");
+    res.sendFile(path.join(__dirname, "frontend", "login.html"));
 });
 
 // Signup API
@@ -71,8 +84,10 @@ app.post("/signup", async (req, res) => {
             message: "User created successfully",
             user: result.rows[0]
         });
+
     } catch (error) {
         console.error(error);
+
         res.status(500).json({
             message: "Error creating user"
         });
@@ -122,14 +137,19 @@ app.post("/login", async (req, res) => {
                 email: user.email
             }
         });
+
     } catch (error) {
         console.error(error);
+
         res.status(500).json({
             message: "Login error"
         });
     }
 });
 
-app.listen(3000, () => {
-    console.log("Server running on http://localhost:3000");
+// Render provides PORT through environment variable
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
