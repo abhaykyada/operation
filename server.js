@@ -45,7 +45,7 @@ pool.query("SELECT NOW()", (error) => {
 
 // Home route → Login page
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "frontend", "login.html"));
+    res.sendFile(path.join(__dirname, "login.html"));
 });
 
 // Signup API
