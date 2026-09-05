@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyApp | Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="auth-page">
+
+    <section class="auth-brand">
+        <div class="logo">
+            <div class="logo-icon">◆</div>
+            <span>MyApp</span>
+        </div>
+
+        <div class="brand-content">
+            <h1>
+                Welcome
+                <span class="gradient-text">Back</span>
+            </h1>
+
+            <p>
+                Login to your account and continue your journey
+                with a fast and secure experience.
+            </p>
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">♢</div>
+                    <div>
+                        <h3>Secure Access</h3>
+                        <p>Your information is safe with us</p>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">↗</div>
+                    <div>
+                        <h3>Quick Login</h3>
+                        <p>Get back to your account in seconds</p>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <div>
+                        <h3>Stay Connected</h3>
+                        <p>Access your account anytime</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="auth-form-area">
+        <div class="auth-card">
+
+            <div class="auth-card-header">
+                <h2>Login</h2>
+                <p>Enter your credentials to continue.</p>
+            </div>
+
+            <form id="loginForm">
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">✉</span>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">♢</span>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                        <button type="button" class="password-toggle" id="togglePassword">◉</button>
+                    </div>
+                </div>
+
+                <button type="submit" class="primary-btn" id="loginBtn">
+                    Login to Account
+                </button>
+            </form>
+
+            <p id="message" class="message"></p>
+
+            <p class="switch-text">
+                Don't have an account?
+                <a href="signup.html">Sign Up</a>
+            </p>
+
+            <div class="security-note">
+                🔒 Secure login protected by encryption
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+<script src="login.js"></script>
+</body>
+</html>
